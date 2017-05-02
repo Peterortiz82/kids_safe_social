@@ -11,7 +11,8 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'pry-rails', '~> 0.3.4'
-#
+gem 'devise', '~> 4.2', '>= 4.2.1'
+
 group :development, :test do
   gem 'byebug', platform: :mri
 end
@@ -20,6 +21,7 @@ group :development do
   gem 'awesome_print', '~> 1.7'
   gem 'better_errors', '~> 2.1', '>= 2.1.1'
   gem 'binding_of_caller', '~> 0.7.2'
+  gem 'meta_request', '~> 0.4.0'
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
   gem 'rubocop', '~> 0.48.1'
