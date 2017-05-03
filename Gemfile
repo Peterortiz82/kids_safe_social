@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.3.3'
 
+gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise', '~> 4.2', '>= 4.2.1'
 gem 'jbuilder', '~> 2.5'
