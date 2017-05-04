@@ -9,6 +9,10 @@ describe User, type: :model do
 
   it { should validate_length_of :name }
 
+  it 'should create an Organization' do
+    expect{ subject }.to change{ Organization.count }.from(0).to(1)
+  end
+
   context 'Phone Number' do
     it 'should only contain numbers' do
       subject.phone_number = '555xyz5555'
