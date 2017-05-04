@@ -24,6 +24,7 @@ group :development do
   gem 'better_errors', '~> 2.1', '>= 2.1.1'
   gem 'binding_of_caller', '~> 0.7.2'
   gem 'faker', '~> 1.7', '>= 1.7.3'
+  gem 'guard-rspec', '~> 4.7', '>= 4.7.3'
   gem 'listen', '~> 3.0.5'
   gem 'meta_request', '~> 0.4.0'
   gem 'rubocop', '~> 0.48.1'
