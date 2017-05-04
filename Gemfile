@@ -16,6 +16,7 @@ gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
   gem 'byebug', platform: :mri
+  gem 'pry-byebug', '~> 3.4', '>= 3.4.2'
 end
 
 group :development do
