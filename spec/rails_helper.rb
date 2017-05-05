@@ -9,6 +9,8 @@ require 'factory_girl_rails'
 require 'database_cleaner'
 require 'capybara/rails'
 require 'shoulda/matchers'
+
+include FactoryGirl::Syntax::Methods
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -42,7 +44,6 @@ RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   # Prevents from having to call FactoryGirl.create, build, ect. within the spec.
-  config.include FactoryGirl::Syntax::Methods
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false

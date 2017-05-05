@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 FactoryGirl.define do
+
   factory :user do
     name 'Test User'
     password 'secret_password'
@@ -8,4 +9,5 @@ FactoryGirl.define do
     sequence(:email){|n| "email#{n}@domain.com" }
     phone_number '5555555555'
   end
+
 end
