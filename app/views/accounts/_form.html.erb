@@ -1,0 +1,20 @@
+<div id="form">
+  <div class="container">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2>Create an Account to monitor</h2>
+        </div>
+        <div class="panel-body">
+          <%= form_for @account, url: organization_accounts_path do |f| %>
+            <%= f.label :name %>
+            <%= f.text_field :name, class: "form-control" %>
+            <br/>
+            <%= f.submit t('global.submit'), class: 'btn btn-primary pull-right' %>
+            <%= link_to t('global.back'), :back, class: 'pull-left' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

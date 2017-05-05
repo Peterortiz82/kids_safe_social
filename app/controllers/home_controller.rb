@@ -2,6 +2,10 @@
 
 class HomeController < ApplicationController
 
-  def index; end
+  def index
+    if current_user
+      redirect_to organization_path
+    end
+  end
 
 end

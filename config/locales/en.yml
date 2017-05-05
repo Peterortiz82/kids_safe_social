@@ -4,9 +4,17 @@ en:
     language:
       name: English
 
+  global:
+    back: Back
+    submit: Submit
+
   home:
     sign_in: Sign In
     sign_out: Sign Out
     sign_up: Sign Up
     user_settings: User Settings
+
+  organizations:
+    account:
+      create_an_account: Create an Account
 

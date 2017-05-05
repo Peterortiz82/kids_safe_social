@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
 
-  factory :organization do
+  factory :organizations do
     name 'Test Organization'
 
     association :user
