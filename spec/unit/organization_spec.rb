@@ -3,7 +3,7 @@ require 'rails_helper'
 
 describe Organization, type: :model do
 
-  subject { create :organizations }
+  subject { create :organization }
 
   it { should validate_presence_of :name }
 

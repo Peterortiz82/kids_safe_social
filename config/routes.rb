@@ -4,9 +4,8 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resource :organization do
-    get :index
-    resource :accounts
+  namespace :organization do
+    resources :accounts
   end
 
 end

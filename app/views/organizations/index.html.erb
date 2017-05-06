@@ -1,9 +1,0 @@
-<% if @accounts.present? %>
-  <%= @accounts.each do |account| %>
-    <ul>
-      <li>Name: <%= account.name %></li>
-    </ul>
-  <% end %>
-<% else %>
-  <%= link_to t('organizations.account.create_an_account'), new_organization_accounts_path, class: 'btn btn-danger' %>
-<% end %>

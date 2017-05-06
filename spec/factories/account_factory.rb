@@ -5,7 +5,7 @@ FactoryGirl.define do
   factory :account do
     name 'Test Account'
 
-    association :organizations
+    association :organization
   end
 
 end
