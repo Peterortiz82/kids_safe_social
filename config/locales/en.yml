@@ -6,8 +6,9 @@ en:
 
   global:
     back: Back
-    submit: Submit
+    edit_account: Edit Account
     delete: Delete
+    submit: Submit
 
   home:
     sign_in: Sign In
@@ -15,7 +16,8 @@ en:
     sign_up: Sign Up
     user_settings: User Settings
 
-  organizations:
-    account:
+  organization:
+    accounts:
       create_an_account: Create an Account
+      edit_account: Edit Account
 

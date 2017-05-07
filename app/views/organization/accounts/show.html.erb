@@ -1,0 +1,10 @@
+<div>
+  <h2><%= @account.name %></h2>
+</div>
+
+<div>
+  <h3>Social Media Accounts</h3>
+  <hr>
+</div>
+
+<%= link_to t('.edit_account'), edit_organization_account_path(@account.id), class: 'btn btn-primary' %>
