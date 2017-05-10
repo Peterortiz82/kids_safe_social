@@ -15,8 +15,8 @@ class Organization::AccountsController < ApplicationController
 
   def create
     @account = Account.new
-    @account.update(account_params)
     @account.organization = current_user.organization
+    @account.update!(account_params)
 
     if @account.save!
       redirect_to organization_accounts_path

@@ -1,5 +1,5 @@
 <% if @accounts.present? %>
-  <%= @accounts.each do |account| %>
+  <% @accounts.each do |account| %>
     <ul>
       <li>Name: <%= link_to account.name, organization_account_path(account.id) %></li>
       <li>

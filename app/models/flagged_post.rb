@@ -1,0 +1,3 @@
+class FlaggedPost < Post
+
+end

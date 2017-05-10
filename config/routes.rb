@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   namespace :organization do
-    resources :accounts
+    resources :accounts do
+      resources :connection_accounts, only: [:new, :create]
+    end
   end
 
 end

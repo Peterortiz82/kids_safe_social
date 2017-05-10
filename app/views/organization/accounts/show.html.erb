@@ -2,9 +2,29 @@
   <h2><%= @account.name %></h2>
 </div>
 
-<div>
+<div class="page-header">
   <h3>Social Media Accounts</h3>
-  <hr>
 </div>
+
+<div>
+<% @account.connection_accounts.each do |connection| %>
+  <div class="row">
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <%= image_tag(connection.avatar_url, alt: "twitter_img") %>
+        <div class="caption">
+          <h3><%= connection.type.underscore.humanize.titleize %></h3>
+          <ul>
+            <li><%= link_to "@#{connection.handle}", "https://twitter.com/#{connection.handle}", target: "_blank"%></li>
+            <li>Followers: <%= connection.followers_count %></li>
+            <li><%= connection.description %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>
+<%= link_to "Add Twitter Connection", new_organization_account_connection_account_path(@account.id, type: TwitterConnection.name), class: 'btn btn-primary' %>
 
 <%= link_to t('.edit_account'), edit_organization_account_path(@account.id), class: 'btn btn-primary' %>
