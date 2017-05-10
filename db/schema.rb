@@ -10,10 +10,58 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170502233147) do
+ActiveRecord::Schema.define(version: 20170510014050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "organization_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["organization_id"], name: "index_accounts_on_organization_id", using: :btree
+  end
+
+  create_table "connection_accounts", force: :cascade do |t|
+    t.integer  "account_id"
+    t.string   "type"
+    t.string   "id_str"
+    t.text     "access_token"
+    t.text     "access_token_secret"
+    t.datetime "disconnected_at"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "latest_post_id"
+    t.string   "name"
+    t.string   "handle"
+    t.integer  "followers_count"
+    t.text     "description"
+    t.string   "avatar_url"
+    t.jsonb    "blacklisted_words_list", default: []
+    t.index ["account_id"], name: "index_connection_accounts_on_account_id", using: :btree
+  end
+
+  create_table "organizations", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_organizations_on_user_id", using: :btree
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "id_str"
+    t.string   "type"
+    t.string   "post_type"
+    t.string   "screen_name"
+    t.integer  "connection_account_id"
+    t.text     "post_text"
+    t.jsonb    "blacklisted_words",     default: []
+    t.date     "post_created_at_date"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -28,8 +76,13 @@ ActiveRecord::Schema.define(version: 20170502233147) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "name"
+    t.string   "phone_number"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "accounts", "organizations"
+  add_foreign_key "connection_accounts", "accounts"
+  add_foreign_key "organizations", "users"
 end
