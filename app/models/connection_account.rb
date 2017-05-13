@@ -20,4 +20,8 @@ class ConnectionAccount < ApplicationRecord
     )
   end
 
+  def name(type)
+    type.chomp("Connection")
+  end
+
 end

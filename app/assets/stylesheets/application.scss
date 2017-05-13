@@ -1,2 +1,11 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+// Connecting an Account Page
+
+span.flagged-words {
+	font-size: 10px;
+	font-style: italic;
+	color: #9b9c9c;
+	margin-left: 5px;
+}

@@ -3,15 +3,18 @@
     <div class="col-md-6 col-md-offset-3">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h2>Connect Social Media Account</h2>
+          <% connection_name = @connection.name(params[:type]) %>
+          <h2><%= "#{connection_name} Account"%></h2>
         </div>
         <div class="panel-body">
           <%= form_for [:organization, :account, @connection], html: { multipart: true } do |f| %>
-              <%= f.label 'Handle' %>
-              <%= f.text_field :handle, class: "form-control" %>
-              <br/>
-              <%= f.submit t('global.submit'), name: 'connection_type', value: params[:type], class: 'btn btn-primary pull-right' %>
-              <%= link_to t('global.back'), :back, class: 'pull-left' %>
+            <%= f.label 'Handle' %>
+            <%= f.text_field :handle, placeholder: "@#{connection_name.downcase}_handle", class: "form-control" %>
+            <%= f.label 'Flagged Words' %><span class="flagged-words">(You will be notified if these words are used in your child's <%= connection_name %> post).</span>
+            <%= f.text_field :blacklisted_words_list, placeholder: "Seperate each word with a comma. (e.g. word, word)", class: "form-control" %>
+            <br/>
+            <%= f.submit t('global.submit'), name: 'connection_type', value: params[:type], class: 'btn btn-primary pull-right' %>
+            <%= link_to t('global.back'), :back, class: 'pull-left' %>
           <% end %>
         </div>
       </div>

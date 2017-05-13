@@ -13,7 +13,8 @@ class TwitterConnection < ConnectionAccount
       name: twitter_user.name,
       followers_count: twitter_user.followers_count,
       description: twitter_user.description,
-      avatar_url: twitter_user.profile_image_url.to_s.gsub('_normal', '')
+      avatar_url: twitter_user.profile_image_url.to_s.gsub('_normal', ''),
+      blacklisted_words_list: blacklisted_words_array
     )
   end
 
@@ -38,6 +39,12 @@ class TwitterConnection < ConnectionAccount
   end
 
 private
+
+  def blacklisted_words_array
+    return [] unless blacklisted_words_list.present?
+
+    blacklisted_words_list.gsub(" ", "").split(",")
+  end
 
   def get_posts(number_of_posts)
     @posts ||= TWITTER_CLIENT.user_timeline(handle).take(number_of_posts)

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   namespace :organization do
     resources :accounts do
       scope module: :accounts do
-        resources :connection_accounts, only: [:new, :create]
+        resources :connection_accounts, only: [:new, :create, :show]
       end
     end
   end
