@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   devise_scope :user do
-    get '/logout',  :to => 'sessions#destroy'
+    get '/sign_out',  :to => 'sessions#destroy'
   end
 
   root 'home#index'
