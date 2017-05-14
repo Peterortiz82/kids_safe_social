@@ -6,8 +6,8 @@ class HomeController < ApplicationController
     puts "#################################"
     puts "#################################"
     puts current_user.present?
-    puts current_user.name
-    puts current_user.sign_in_count
+    puts current_user&.name
+    puts current_user&.sign_in_count
     puts "#################################"
     puts "#################################"
     if current_user.present?
