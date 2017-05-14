@@ -3,7 +3,7 @@
 class Account < ApplicationRecord
 
   belongs_to :organization
-  has_many :connection_accountsm, dependent: :destroy
+  has_many :connection_accounts, dependent: :destroy
 
   validates :name, presence: true
   validates :organization_id, presence: true
