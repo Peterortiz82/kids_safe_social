@@ -1,0 +1,13 @@
+<div>
+  <h2><%= @account.name %></h2>
+  <h4>Has a post on their <%= @post.post_type.titleize.chomp("Post") %> account that uses a word you have deemed inappropriate.</h4>
+  <% if @post.blacklisted_words.length >= 1%>
+    <h4>the word used was "<%= @post.blacklisted_words.join(",") %>"</h4>
+  <% else %>
+    <h4>the words used were "<%= @post.blacklisted_words.join(", ") %>"</h4>
+  <% end %>
+
+  <h4>@<%= @post.screen_name %>: <%= @post.post_text %></h4>
+
+  <p><%= link_to "View Post", "https://twitter.com/#{@post.screen_name}/status/#{@post.id_str}" %></p>
+</div>
