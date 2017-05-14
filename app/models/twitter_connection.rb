@@ -18,10 +18,6 @@ class TwitterConnection < ConnectionAccount
     )
   end
 
-  def filtered_posts
-    FilterPost.new(self).check_post
-  end
-
   def post_data(number_of_posts)
     return if get_posts(number_of_posts).nil?
     posts_array = []
@@ -39,12 +35,6 @@ class TwitterConnection < ConnectionAccount
   end
 
 private
-
-  def blacklisted_words_array
-    return [] unless blacklisted_words_list.present?
-
-    blacklisted_words_list.gsub(" ", "").split(",")
-  end
 
   def get_posts(number_of_posts)
     @posts ||= TWITTER_CLIENT.user_timeline(handle).take(number_of_posts)

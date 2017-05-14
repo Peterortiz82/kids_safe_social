@@ -24,4 +24,13 @@ class ConnectionAccount < ApplicationRecord
     type.chomp("Connection")
   end
 
+
+private
+
+  def blacklisted_words_array
+    return [] unless blacklisted_words_list.present?
+
+    blacklisted_words_list.gsub(" ", "").split(",")
+  end
+
 end

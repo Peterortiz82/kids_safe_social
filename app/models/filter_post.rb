@@ -33,7 +33,7 @@ private
     connection_has_posts = Post.where(connection_account_id: connection.id).exists?
     # If this is our first time checking the connections posts, we want to grab the last
     # 20 posts. Otherwise, we will always check the last post.
-    number_of_posts = connection_has_posts ? 1 : 20
+    number_of_posts = connection_has_posts ? 10 : 20
 
     @posts ||= connection.post_data(number_of_posts)
   end
