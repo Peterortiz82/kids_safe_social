@@ -5,9 +5,9 @@ Rails.application.routes.draw do
 
   mount Sidekiq::Web => '/sidekiq'
 
-  root 'home#index'
-
   devise_for :users
+
+  root 'home#index'
 
   namespace :organization do
     resources :accounts do
