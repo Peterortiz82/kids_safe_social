@@ -5,13 +5,9 @@ Rails.application.routes.draw do
 
   mount Sidekiq::Web => '/sidekiq'
 
-  devise_for :users
-
-  devise_scope :user do
-    get '/sign_out',  :to => 'sessions#destroy'
-  end
-
   root 'home#index'
+
+  devise_for :users
 
   namespace :organization do
     resources :accounts do
