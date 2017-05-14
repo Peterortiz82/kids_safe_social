@@ -6,7 +6,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_one :organization
+  has_one :organization, dependent: :destroy
 
   validates :name, presence: true, length: { in: 1..100 }
   validates :phone_number, numericality: true, length: { in: 10..11 }, allow_blank: true
