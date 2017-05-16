@@ -10,23 +10,17 @@ class Organization::Accounts::ConnectionAccountsController < ApplicationControll
   end
 
   def create
-    @connection = connection_class.create(connection_params)
-    @connection.account_id = params[:account_id]
-    @connection.update_connection!
-
-    if @connection.save!
-      redirect_to organization_account_path(params[:account_id])
-    else
-      render :new
-    end
+    connection = "#{params[:provider].capitalize}Connection".constantize
+    connection.find_or_create_connection(auth_hash, params[:account_id])
+    redirect_to organization_account_path(params[:account_id])
   end
 
   def show; end
 
 private
 
-  def connection_class
-    params[:connection_type].constantize
+  def auth_hash
+    request.env['omniauth.auth']
   end
 
   def set_connection_account
@@ -34,7 +28,7 @@ private
   end
 
   def connection_params
-    params.require(:connection_account).permit(:handle, :blacklisted_words_list)
+    params.require(:connection_account).permit(:blacklisted_words_list)
   end
 
 end

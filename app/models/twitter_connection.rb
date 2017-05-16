@@ -2,19 +2,18 @@
 
 class TwitterConnection < ConnectionAccount
 
-  def has_valid_connection?
-    twitter_user.present?
-  end
-
-  def update_connection!
-    update!(
-      id_str: twitter_user.id.to_s,
-      latest_post_id: twitter_user.status.id.to_s,
-      name: twitter_user.name,
-      followers_count: twitter_user.followers_count,
-      description: twitter_user.description,
-      avatar_url: twitter_user.profile_image_url.to_s.gsub('_normal', ''),
-      blacklisted_words_list: blacklisted_words_array
+  def self.find_or_create_connection(auth_hash, account_id)
+    connection = where(id_str: auth_hash.extra.raw_info.id_str).first_or_create
+    connection.update!(
+      account_id: account_id,
+      id_str: auth_hash.extra.raw_info.id_str,
+      name: auth_hash.info.name,
+      handle: auth_hash.info.nickname,
+      avatar_url: auth_hash.extra.raw_info.profile_image_url.gsub('_normal', ''),
+      followers_count: auth_hash.extra.raw_info.followers_count,
+      description: auth_hash.info.description,
+      access_token: auth_hash.credentials.token,
+      access_token_secret: auth_hash.credentials.secret
     )
   end
 
@@ -37,11 +36,16 @@ class TwitterConnection < ConnectionAccount
 private
 
   def get_posts(number_of_posts)
-    @posts ||= TWITTER_CLIENT.user_timeline(handle).take(number_of_posts)
+    @posts ||= twitter_client.user_timeline.take(number_of_posts)
   end
 
-  def twitter_user
-    @twitter_user ||= TWITTER_CLIENT.user(handle)
+  def twitter_client
+    @client ||= Twitter::REST::Client.new do |config|
+      config.consumer_key = ENV['twitter_consumer_key']
+      config.consumer_secret = ENV['twitter_consumer_secret']
+      config.access_token = access_token
+      config.access_token_secret = access_token_secret
+    end
   end
 
 end

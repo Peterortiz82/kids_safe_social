@@ -10,10 +10,12 @@ Rails.application.routes.draw do
   namespace :organization do
     resources :accounts do
       scope module: :accounts do
-        resources :connection_accounts, only: [:new, :create, :show]
+        resources :connection_accounts, only: [:new, :show]
       end
     end
   end
+
+  get '/auth/:provider/callback', to: 'organization/accounts/connection_accounts#create'
 
   authenticate :user, -> (user) { user.admin? }do
     mount Sidekiq::Web, at: "sidekiq"

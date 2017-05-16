@@ -25,6 +25,5 @@
   </div>
 <% end %>
 </div>
-<%= link_to "Add Twitter Connection", new_organization_account_connection_account_path(@account.id, type: TwitterConnection.name), class: 'btn btn-primary' %>
-
+<%=  link_to "Twitter", "/auth/twitter?account_id=#{@account.id}", class: "btn btn-primary" %>
 <%= link_to t('.edit_account'), edit_organization_account_path(@account.id), class: 'btn btn-primary' %>
