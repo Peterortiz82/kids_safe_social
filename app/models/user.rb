@@ -9,9 +9,15 @@ class User < ApplicationRecord
   has_one :organization, dependent: :destroy
 
   validates :name, presence: true, length: { in: 1..100 }
-  validates :phone_number, numericality: true, length: { in: 10..11 }, allow_blank: true
+  validates :phone_number, length: { in: 10..14 }, allow_blank: true
 
   after_create :create_organization_for_user
+
+  def clean_phone_number
+    phone = phone_number.scan(/\d+/).join
+    phone[0] == "1" ? phone[0] = "" : phone
+    phone unless phone.length != 10
+  end
 
 private
 
