@@ -1,9 +1,10 @@
 class FlaggedPost < Post
 
-  def notify_parents_of_flagged_post
+  def send_notifications
     user = connection_account.account.organization.user
 
-    FlaggedPostMailer.flagged_twitter_post(user, self).deliver_later
+    PostMailer.flagged_twitter_post(user, self).deliver_later
+    SendSmsWorker.perform_async(user.id, id) if user.phone_number.present? && user.sms_enabled?
   end
 
 end

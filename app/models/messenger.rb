@@ -8,8 +8,8 @@ class Messenger
   end
 
   def send_sms
-    acct_sid = ENV["twilio_sid"]
-    auth_token = ENV["twilio_auth_token"]
+    acct_sid = ENV["TWILIO_SID"]
+    auth_token = ENV["TWILIO_AUTH_TOKEN"]
 
     @client = Twilio::REST::Client.new(acct_sid, auth_token)
 

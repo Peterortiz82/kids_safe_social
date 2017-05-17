@@ -7,6 +7,6 @@ class Post < ApplicationRecord
   validates :id_str, :connection_account_id, presence: true
   validates :id_str, uniqueness: true
 
-  after_create :notify_parents_of_flagged_post
+  after_commit :send_notifications
 
 end

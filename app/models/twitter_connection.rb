@@ -23,13 +23,14 @@ class TwitterConnection < ConnectionAccount
 
     get_posts(number_of_posts).each do |post|
       posts_array << {
+        platform_type: type.chomp("Connection"),
         created_at: post.created_at,
         id_str: post.id.to_s,
         screen_name: post.user.screen_name,
-        post_text: post.text.downcase.gsub(/[^a-z0-9\s]/i, '')
+        post_text: post.text.downcase.gsub(/[^a-z0-9\s]/i, ''),
+        connection_account_id: id
       }
     end
-
     posts_array
   end
 

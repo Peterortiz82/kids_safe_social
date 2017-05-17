@@ -3,13 +3,19 @@
 class SendSmsWorker
 
   include Sidekiq::Worker
+  sidekiq_options queue: :notifications
 
   def perform(user_id, post_id)
     user = User.find(user_id)
     post = Post.find(post_id)
-    body = "A #{post.post_type.titleize} has been flagged. see the post here 'https://twitter.com/#{post.screen_name}/status/#{post.id_str}'"
 
-    Messenger.new(user.clean_phone_number, body).send_sms
+    Messenger.new(user.clean_phone_number, text_body(post)).send_sms if user.phone_number.present?
+  end
+
+  def text_body(post)
+    if post.post_type == "Twitter"
+      "A #{post.post_type} Post has been flagged for #{post.connection_account.name}. \nhttps://twitter.com/#{post.screen_name}/status/#{post.id_str}"
+    end
   end
 
 end

@@ -22,7 +22,7 @@ class FilterPost
       end
 
       if blacklisted_words.present?
-        connection.create_flagged_post!(post, blacklisted_words)
+        CreatePost.new(post, connection, FlaggedPost.name, blacklisted_words).call
       end
     end
   end
