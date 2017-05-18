@@ -46,7 +46,25 @@
         </div>
         <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
           <div class="panel-body">
-            <%= link_to "#" do %>
+            <% if @account.instagram_connections %>
+              <% @account.instagram_connections.each do |connection| %>
+                <div class="media">
+                  <div class="media-left">
+                    <%= link_to image_tag(connection.avatar_url, width: 75, height: 75, alt: "twitter_avatar", class: "thumbnail"),
+                          account_connection_account_path(account_id: connection.account_id, id: connection.id) %>
+                  </div>
+                  <div class="media-body">
+                    <div class="media-heading">
+                      <%= link_to "@#{connection.handle}", "https://instagram.com/#{connection.handle}", target: "_blank"%>
+                      <%= link_to "Disconnect", account_connection_account_path(@account.id, connection.id), method: :delete , class: "pull-right btn btn-default" %>
+                    </div>
+                    Flagged Posts: <%= connection.flagged_posts.count %>
+                  </div>
+                </div>
+                <hr>
+              <% end %>
+            <% end %>
+            <%= link_to "/auth/instagram?account_id=#{@account.id}" do %>
                 <%= fa_icon "plus-square" %> <span>Connect Instagram Account</span>
             <% end %>
           </div>

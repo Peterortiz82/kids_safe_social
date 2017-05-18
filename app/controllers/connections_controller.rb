@@ -3,9 +3,10 @@
 class ConnectionsController < ApplicationController
 
   def create
+    account_id = request.env['omniauth.params']['account_id'].to_i
     connection = "#{params[:provider].capitalize}Connection".constantize
-    connection.find_or_create_connection(auth_hash, params[:account_id])
-    redirect_to account_path(params[:account_id])
+    connection.find_or_create_connection(auth_hash, account_id)
+    redirect_to account_path(account_id)
   end
 
 private
