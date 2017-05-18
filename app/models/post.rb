@@ -7,6 +7,6 @@ class Post < ApplicationRecord
   validates :id_str, :connection_account_id, presence: true
   validates :id_str, uniqueness: true
 
-  after_commit :send_notifications
+  after_create_commit :send_notifications
 
 end

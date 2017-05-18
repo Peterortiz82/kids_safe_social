@@ -1,14 +1,14 @@
 <% if @accounts.present? %>
   <% @accounts.each do |account| %>
     <ul>
-      <li>Name: <%= link_to account.name, organization_account_path(account.id) %></li>
+      <li>Name: <%= link_to account.name, account_path(account.id) %></li>
       <li>
-        <%= link_to t('global.delete'), organization_account_path(account.id), method: :delete, class: 'pull-left' %>
+        <%= link_to t('global.delete'), account_path(account.id), method: :delete, class: 'pull-left' %>
       </li>
     </ul>
   <% end %>
 <% end %>
 
 <div>
-  <%= link_to t('.create_an_account'), new_organization_account_path, class: 'btn btn-danger' %>
+  <%= link_to t('.create_an_account'), new_account_path, class: 'btn btn-danger' %>
 </div>

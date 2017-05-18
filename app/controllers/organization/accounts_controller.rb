@@ -19,7 +19,7 @@ class Organization::AccountsController < ApplicationController
     @account.update!(account_params)
 
     if @account.save!
-      redirect_to organization_accounts_path
+      redirect_to accounts_path
     else
       render :new
     end
@@ -27,7 +27,7 @@ class Organization::AccountsController < ApplicationController
 
   def update
     if @account.update!(account_params)
-      redirect_to organization_accounts_path
+      redirect_to accounts_path
     else
       rener :edit
     end
@@ -41,7 +41,7 @@ class Organization::AccountsController < ApplicationController
 
   def destroy
     @account.destroy!
-    redirect_to organization_accounts_path
+    redirect_to accounts_path
   end
   
 private

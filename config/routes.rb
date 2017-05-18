@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  namespace :organization do
+  scope module: :organization do
     resources :accounts do
       scope module: :accounts do
         resources :connection_accounts, only: [:new, :show]
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/auth/:provider/callback', to: 'organization/accounts/connection_accounts#create'
+  get '/auth/:provider/callback', to: 'connections#create'
 
   authenticate :user, -> (user) { user.admin? }do
     mount Sidekiq::Web, at: "sidekiq"

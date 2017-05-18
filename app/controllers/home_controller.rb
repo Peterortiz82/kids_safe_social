@@ -4,7 +4,7 @@ class HomeController < ApplicationController
 
   def index
     if current_user.present?
-      redirect_to  organization_accounts_path
+      redirect_to  accounts_path
     end
   end
 

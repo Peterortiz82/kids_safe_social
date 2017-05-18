@@ -13,7 +13,7 @@
       <div class="thumbnail">
         <%= image_tag(connection.avatar_url, alt: "twitter_img") %>
         <div class="caption">
-          <h3><%= link_to connection.type.underscore.humanize.titleize, organization_account_connection_account_path(account_id: connection.account_id, id: connection.id) %></h3>
+          <h3><%= link_to connection.type.underscore.humanize.titleize, account_connection_account_path(account_id: connection.account_id, id: connection.id) %></h3>
           <ul>
             <li><%= link_to "@#{connection.handle}", "https://twitter.com/#{connection.handle}", target: "_blank"%></li>
             <li>Followers: <%= connection.followers_count %></li>
@@ -25,5 +25,27 @@
   </div>
 <% end %>
 </div>
-<%=  link_to "Twitter", "/auth/twitter?account_id=#{@account.id}", class: "btn btn-primary" %>
-<%= link_to t('.edit_account'), edit_organization_account_path(@account.id), class: 'btn btn-primary' %>
+<ul class="nav-social-media" >
+  <li>
+    <%= link_to "/auth/twitter?account_id=#{@account.id}" do %>
+      <%= fa_stacked_icon "twitter", class: "fa-5x" %>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to "#" do %>
+      <%= fa_stacked_icon "instagram", class: "fa-5x" %>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to "#" do %>
+      <%= fa_stacked_icon "snapchat", class: "fa-5x" %>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to "#" do %>
+      <%= fa_stacked_icon "facebook", class: "fa-5x" %>
+    <% end %>
+  </li>
+</ul>
+
+<%= link_to "Edit", edit_account_path(@account.id) %>

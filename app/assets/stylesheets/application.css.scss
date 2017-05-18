@@ -1,5 +1,14 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome";
+
+a:hover {
+	text-decoration: none;
+}
+
+ul {
+	list-style: none;
+}
 
 // Connecting an Account Page
 

@@ -9,12 +9,6 @@ class Organization::Accounts::ConnectionAccountsController < ApplicationControll
     @connection = ConnectionAccount.new
   end
 
-  def create
-    connection = "#{params[:provider].capitalize}Connection".constantize
-    connection.find_or_create_connection(auth_hash, params[:account_id])
-    redirect_to organization_account_path(params[:account_id])
-  end
-
   def show; end
 
 private
