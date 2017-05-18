@@ -4,13 +4,14 @@
       <% @connection.flagged_posts.each do |post| %>
         <div class="media">
           <div class="media-left">
-            <%= link_to image_tag(post.connection_account.avatar_url, width: 50, height: 50, alt: "twitter_avatar"),
-                        account_connection_account_path(account_id: post.connection_account.account_id, id: post.connection_account.id) %>
+            <%= link_to image_tag(post.connection_account.avatar_url, width: 50, height: 50,
+                  alt: "https://twitter.com/#{post.connection_account.handle}", class: "connection-img"),
+                  account_connection_account_path(account_id: post.connection_account.account_id, id: post.connection_account.id) %>
           </div>
           <div class="media-body">
             <div class="media-heading">
               <%= link_to "@#{post.connection_account.handle}", "https://twitter.com/#{post.connection_account.handle}",
-                          class: "handle", target: "_blank" %>
+                    class: "handle", target: "_blank" %>
               <span class="created-at"><%= time_ago_in_words(post.post_created_at_date) %></span>
               <div class="post-text">
                 <%= post.post_text %>
