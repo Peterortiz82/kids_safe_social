@@ -51,7 +51,7 @@ private
   end
 
   def account_params
-    params.require(:account).permit(:name)
+    params.require(:account).permit(:name, :blacklisted_words_list)
   end
 
 end

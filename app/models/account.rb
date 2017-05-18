@@ -9,4 +9,10 @@ class Account < ApplicationRecord
   validates :name, presence: true
   validates :organization_id, presence: true
 
+  def blacklisted_words_array
+    return [] unless blacklisted_words_list.present?
+
+    blacklisted_words_list.downcase.gsub(" ", "").split(",")
+  end
+
 end

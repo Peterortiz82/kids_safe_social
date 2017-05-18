@@ -1,70 +1,72 @@
-<div class="page-header">
-  <h2><%= @account.name %></h2>
-</div>
-<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingOne">
-      <h4 class="panel-title">
-        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          <i class="fa fa-twitter" aria-hidden="true"> Twitter</i>
-        </a>
-      </h4>
-    </div>
-    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-      <div class="panel-body">
-        <% if @account.twitter_connections %>
-          <% @account.twitter_connections.each do |connection| %>
-            <div class="media">
-              <div class="media-left">
-                <%= link_to image_tag(connection.avatar_url, width: 75, height: 75, alt: "twitter_avatar", class: "thumbnail"),
-                      account_connection_account_path(account_id: connection.account_id, id: connection.id) %>
-              </div>
-              <div class="media-body">
-                <div class="media-heading">
-                  <%= link_to "@#{connection.handle}", "https://twitter.com/#{connection.handle}", target: "_blank"%>
-                  <%= link_to "Disconnect", account_connection_account_path(@account.id, connection.id), method: :delete , class: "pull-right btn btn-default" %>
+<h2><%= @account.name %></h2>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne">
+          <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <i class="fa fa-twitter" aria-hidden="true"> Twitter</i>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            <% if @account.twitter_connections %>
+              <% @account.twitter_connections.each do |connection| %>
+                <div class="media">
+                  <div class="media-left">
+                    <%= link_to image_tag(connection.avatar_url, width: 75, height: 75, alt: "twitter_avatar", class: "thumbnail"),
+                          account_connection_account_path(account_id: connection.account_id, id: connection.id) %>
+                  </div>
+                  <div class="media-body">
+                    <div class="media-heading">
+                      <%= link_to "@#{connection.handle}", "https://twitter.com/#{connection.handle}", target: "_blank"%>
+                      <%= link_to "Disconnect", account_connection_account_path(@account.id, connection.id), method: :delete , class: "pull-right btn btn-default" %>
+                    </div>
+                    Flagged Posts: <%= connection.flagged_posts.count %>
+                  </div>
                 </div>
-                Flagged Posts: <%= connection.flagged_posts.count %>
-              </div>
-            </div>
-            <hr>
-          <% end %>
-        <% end %>
-        <%= link_to "/auth/twitter?account_id=#{@account.id}" do %>
-          <%= fa_icon "plus-square" %> <span>Connect Twitter Account</span>
-        <% end %>
+                <hr>
+              <% end %>
+            <% end %>
+            <%= link_to "/auth/twitter?account_id=#{@account.id}" do %>
+              <%= fa_icon "plus-square" %> <span>Connect Twitter Account</span>
+            <% end %>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingTwo">
-      <h4 class="panel-title">
-        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          <i class="fa fa-instagram" aria-hidden="true"> Instagram</i>
-        </a>
-      </h4>
-    </div>
-    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-      <div class="panel-body">
-        <%= link_to "#" do %>
-            <%= fa_icon "plus-square" %> <span>Connect Instagram Account</span>
-        <% end %>
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingTwo">
+          <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              <i class="fa fa-instagram" aria-hidden="true"> Instagram</i>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            <%= link_to "#" do %>
+                <%= fa_icon "plus-square" %> <span>Connect Instagram Account</span>
+            <% end %>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingThree">
-      <h4 class="panel-title">
-        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          <i class="fa fa-facebook" aria-hidden="true"> Facebook</i>
-        </a>
-      </h4>
-    </div>
-    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-      <div class="panel-body">
-        <%= link_to "#" do %>
-          <%= fa_icon "plus-square" %> <span>Connect Facebook Account</span>
-        <% end %>
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingThree">
+          <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              <i class="fa fa-facebook" aria-hidden="true"> Facebook</i>
+            </a>
+          </h4>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            <%= link_to "#" do %>
+              <%= fa_icon "plus-square" %> <span>Connect Facebook Account</span>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div>

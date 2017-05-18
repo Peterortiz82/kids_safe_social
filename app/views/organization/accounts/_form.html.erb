@@ -7,8 +7,10 @@
         </div>
         <div class="panel-body">
           <%= form_for @account, html: { multipart: true } do |f| %>
-            <%= f.label :name %>
+            <%= f.label "Account Name" %>
             <%= f.text_field :name, class: "form-control" %>
+            <%= f.label "Alert words" %>
+            <%= f.text_area :blacklisted_words_list, size: "30x5", placeholder: "separate words with a comma (e.g. word, word)", class: "form-control" %>
             <br/>
             <%= f.submit t('global.submit'), class: 'btn btn-primary pull-right' %>
             <%= link_to t('global.back'), :back, class: 'pull-left' %>

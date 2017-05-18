@@ -9,14 +9,14 @@ class FilterPost
   end
 
   def check_post
-    return false if !posts.present? || !connection.blacklisted_words_list.present?
+    return false if !posts.present? || !connection.account.blacklisted_words_array.present?
 
     posts.each do |post|
       next if Post.find_by(id_str: post[:id_str])
       blacklisted_words = []
 
       post[:post_text].split.each do |word|
-        if connection.blacklisted_words_list.include?(word)
+        if connection.account.blacklisted_words_array.include?(word)
           blacklisted_words << word.upcase
         end
       end

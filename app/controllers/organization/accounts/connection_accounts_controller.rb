@@ -22,8 +22,4 @@ private
     @connection = ConnectionAccount.find(params[:id])
   end
 
-  def connection_params
-    params.require(:connection_account).permit(:blacklisted_words_list)
-  end
-
 end
