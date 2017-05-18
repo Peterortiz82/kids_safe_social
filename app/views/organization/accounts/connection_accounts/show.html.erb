@@ -1,1 +1,5 @@
-Hello!!!!
+<% if @connection.is_a?(TwitterConnection) %>
+  <%= render "twitter_connection" %>
+<% end %>
+
+<%= link_to "Back", :back %>
