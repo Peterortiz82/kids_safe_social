@@ -4,6 +4,8 @@ class CheckFlaggedPostWorker
 
   include Sidekiq::Worker
 
+  sidekiq_options queue: :filter_posts
+
   def perform(connection_id)
     connection = ConnectionAccount.find(connection_id)
 

@@ -3,6 +3,7 @@
 class SendSmsWorker
 
   include Sidekiq::Worker
+
   sidekiq_options queue: :notifications
 
   def perform(user_id, post_id)

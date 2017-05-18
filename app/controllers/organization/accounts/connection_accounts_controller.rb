@@ -3,7 +3,7 @@
 class Organization::Accounts::ConnectionAccountsController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :set_connection_account, only: [:show]
+  before_action :set_connection_account, only: [:show, :destroy]
 
   def new
     @connection = ConnectionAccount.new
@@ -11,11 +11,12 @@ class Organization::Accounts::ConnectionAccountsController < ApplicationControll
 
   def show; end
 
-private
-
-  def auth_hash
-    request.env['omniauth.auth']
+  def destroy
+    @connection.destroy!
+    redirect_to account_path(params[:account_id])
   end
+
+private
 
   def set_connection_account
     @connection = ConnectionAccount.find(params[:id])

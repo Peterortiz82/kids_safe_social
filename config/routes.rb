@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   scope module: :organization do
     resources :accounts do
       scope module: :accounts do
-        resources :connection_accounts, only: [:new, :show]
+        resources :connection_accounts, only: [:new, :show, :destroy]
       end
     end
   end
